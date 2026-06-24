@@ -1,19 +1,19 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
-  "name": "8b71ee57d2c05c8c0d23",
+  "name": "ccd9de357b704d70c320",
   "position": {
-    "x": 670.18399977035915,
-    "y": 517.335017366593,
-    "z": 2000,
-    "height": 202.23096133421365,
-    "width": 435.0317191491805,
-    "tabOrder": 2000
+    "x": 950,
+    "y": 575.38461538461536,
+    "z": 5000,
+    "height": 143.84615384615384,
+    "width": 330,
+    "tabOrder": 5000
   },
   "visual": {
-    "visualType": "cardVisual",
+    "visualType": "card",
     "query": {
       "queryState": {
-        "Data": {
+        "Values": {
           "projections": [
             {
               "field": {
@@ -28,30 +28,11 @@
                       "Property": "Number of Volunteers"
                     }
                   },
-                  "Function": 1
+                  "Function": 0
                 }
               },
               "queryRef": "Sum(OfficeForms Table.Number of Volunteers)",
-              "nativeQueryRef": "Average of Number of Volunteers"
-            },
-            {
-              "field": {
-                "Aggregation": {
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "OfficeForms Table"
-                        }
-                      },
-                      "Property": "Bike Repairs"
-                    }
-                  },
-                  "Function": 1
-                }
-              },
-              "queryRef": "Sum(OfficeForms Table.Bike Repairs)",
-              "nativeQueryRef": "Average of Bike Repairs"
+              "nativeQueryRef": "Sum of Number of Volunteers"
             }
           ]
         }
@@ -71,7 +52,7 @@
                     "Property": "Number of Volunteers"
                   }
                 },
-                "Function": 1
+                "Function": 0
               }
             },
             "direction": "Descending"
@@ -79,6 +60,26 @@
         ],
         "isDefaultSort": true
       }
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 8,
+                      "Percent": 0.6
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
     },
     "drillFilterOtherVisuals": true
   }
