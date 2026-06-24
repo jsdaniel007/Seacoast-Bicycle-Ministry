@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Bicycle Ministry Dashboard"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "afe874b2-4fe6-4d36-ab5e-363668f50ce6"
+  }
+}
