@@ -10,5 +10,12 @@ annotation __PBI_TimeIntelligenceEnabled = 1
 
 annotation PBI_ProTooling = ["DevMode"]
 
+annotation PBI_QueryOrder = ["OfficeForms Table"]
+
+ref table 'OfficeForms Table'
+ref table DateTableTemplate_9cee594f-248c-4669-9068-30e20885de96
+ref table LocalDateTable_a9e0d8f2-a8d6-41b1-a62e-1c55264af0cf
+ref table LocalDateTable_70e838cf-658c-4b6d-a8d2-770c3caeaca8
+
 ref cultureInfo en-US
 

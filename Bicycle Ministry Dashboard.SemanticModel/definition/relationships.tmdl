@@ -1,0 +1,10 @@
+relationship a142871f-4fa8-4172-b973-5b65741dd2da
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'OfficeForms Table'.'Completion time'
+	toColumn: LocalDateTable_a9e0d8f2-a8d6-41b1-a62e-1c55264af0cf.Date
+
+relationship 2ef18c18-7787-4332-b6bb-60a3cf5101e5
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'OfficeForms Table'.'Bike Ministry Date'
+	toColumn: LocalDateTable_70e838cf-658c-4b6d-a8d2-770c3caeaca8.Date
+

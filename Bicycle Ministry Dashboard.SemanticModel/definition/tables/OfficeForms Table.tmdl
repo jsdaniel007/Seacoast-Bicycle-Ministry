@@ -1,0 +1,138 @@
+table 'OfficeForms Table'
+	lineageTag: 7e7a8b4b-67f6-46b6-b45a-c751f1a2ef6b
+
+	column Id
+		dataType: int64
+		formatString: 0
+		lineageTag: 6d4ea05e-27b1-49da-962f-86967d57c354
+		summarizeBy: count
+		sourceColumn: Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Completion time'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 82babc46-1c1a-49d7-b2d1-9a5c487ba1c7
+		summarizeBy: none
+		sourceColumn: Completion time
+
+		variation Variation
+			isDefault
+			relationship: a142871f-4fa8-4172-b973-5b65741dd2da
+			defaultHierarchy: LocalDateTable_a9e0d8f2-a8d6-41b1-a62e-1c55264af0cf.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Bike Ministry Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 5a97d68a-2343-48a7-ba04-ff9ddce1c9b4
+		summarizeBy: none
+		sourceColumn: Bike Ministry Date
+
+		variation Variation
+			isDefault
+			relationship: 2ef18c18-7787-4332-b6bb-60a3cf5101e5
+			defaultHierarchy: LocalDateTable_70e838cf-658c-4b6d-a8d2-770c3caeaca8.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Bike Donations Received'
+		dataType: int64
+		formatString: 0
+		lineageTag: 25eced35-5c95-4213-88ec-9f430daa4039
+		summarizeBy: sum
+		sourceColumn: Bike Donations Received
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bikes Given Away'
+		dataType: int64
+		formatString: 0
+		lineageTag: 1ed73836-cdfd-49cc-a9ed-1df69ff1e2fb
+		summarizeBy: sum
+		sourceColumn: Bikes Given Away
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Names of Donation Recipients'
+		dataType: string
+		lineageTag: dfa0d3f6-2a8e-4ece-9c72-86d28fb51c17
+		summarizeBy: none
+		sourceColumn: Names of Donation Recipients
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bike Repairs'
+		dataType: int64
+		formatString: 0
+		lineageTag: b5c6011c-ce7e-47ea-a226-68e44c6ba48a
+		summarizeBy: sum
+		sourceColumn: Bike Repairs
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bikes that were scrapped'
+		dataType: int64
+		formatString: 0
+		lineageTag: b7b11325-f994-4533-ab04-3eb37dde2d4b
+		summarizeBy: sum
+		sourceColumn: Bikes that were scrapped
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'How Organized was today?'
+		dataType: int64
+		formatString: 0
+		lineageTag: 781ac102-2436-402c-aae1-0578d025f058
+		summarizeBy: sum
+		sourceColumn: How Organized was today?
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Number of Volunteers'
+		dataType: int64
+		formatString: 0
+		lineageTag: f7cea6f8-9b17-4d8a-9f96-3a1bbb4361a6
+		summarizeBy: sum
+		sourceColumn: Number of Volunteers
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'List any names of people that attended that may not have signed in'
+		dataType: string
+		lineageTag: edb63f06-7bca-4197-844d-ed4502795845
+		summarizeBy: none
+		sourceColumn: List any names of people that attended that may not have signed in
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'What can we do to improve next time?'
+		dataType: string
+		lineageTag: 09295747-c5cf-43b7-a5af-2c01a53474d8
+		summarizeBy: none
+		sourceColumn: What can we do to improve next time?
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'OfficeForms Table' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\Personal\Documents\Code\Seacoast Bicycle Ministry Repository\Seacoast-Bicycle-Ministry\data\Bike Ministry Number Report and Feedback Form.xlsx"), null, true),
+				    OfficeForms.Table_Table = Source{[Item="OfficeForms.Table",Kind="Table"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(OfficeForms.Table_Table,{{"Id", Int64.Type}, {"Start time", type datetime}, {"Completion time", type datetime}, {"Email", type text}, {"Name", type any}, {"Bike Ministry Date", type date}, {"Bike Donations Received", Int64.Type}, {"Bikes Given Away", Int64.Type}, {"Names of Donation Recipients", type text}, {"Bike Repairs", Int64.Type}, {"Bikes that were scrapped", Int64.Type}, {"How Organized was today?", Int64.Type}, {"Number of Volunteers", type any}, {"List any names of people that attended that may not have signed in", type text}, {"What can we do to improve next time?", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Start time", "Email", "Name"}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Removed Columns",{{"Completion time", type date}, {"Number of Volunteers", Int64.Type}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

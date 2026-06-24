@@ -1,0 +1,172 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "name": "740faf7196a71cc25bb5",
+  "position": {
+    "x": 9.4060912248471453,
+    "y": 0,
+    "z": 0,
+    "height": 719.56597870080668,
+    "width": 660.777908545512,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "HierarchyLevel": {
+                  "Expression": {
+                    "Hierarchy": {
+                      "Expression": {
+                        "PropertyVariationSource": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "OfficeForms Table"
+                            }
+                          },
+                          "Name": "Variation",
+                          "Property": "Bike Ministry Date"
+                        }
+                      },
+                      "Hierarchy": "Date Hierarchy"
+                    }
+                  },
+                  "Level": "Month"
+                }
+              },
+              "queryRef": "OfficeForms Table.Bike Ministry Date.Variation.Date Hierarchy.Month",
+              "nativeQueryRef": "Bike Ministry Date Month",
+              "active": true
+            },
+            {
+              "field": {
+                "HierarchyLevel": {
+                  "Expression": {
+                    "Hierarchy": {
+                      "Expression": {
+                        "PropertyVariationSource": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "OfficeForms Table"
+                            }
+                          },
+                          "Name": "Variation",
+                          "Property": "Bike Ministry Date"
+                        }
+                      },
+                      "Hierarchy": "Date Hierarchy"
+                    }
+                  },
+                  "Level": "Day"
+                }
+              },
+              "queryRef": "OfficeForms Table.Bike Ministry Date.Variation.Date Hierarchy.Day",
+              "nativeQueryRef": "Bike Ministry Date Day",
+              "active": false
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "OfficeForms Table"
+                        }
+                      },
+                      "Property": "Number of Volunteers"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(OfficeForms Table.Number of Volunteers)",
+              "nativeQueryRef": "Sum of Number of Volunteers"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "6f5902f0844707893b60",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "OfficeForms Table"
+                  }
+                },
+                "Property": "Number of Volunteers"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "e3b6e2c05051ab792804",
+        "field": {
+          "HierarchyLevel": {
+            "Expression": {
+              "Hierarchy": {
+                "Expression": {
+                  "PropertyVariationSource": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "OfficeForms Table"
+                      }
+                    },
+                    "Name": "Variation",
+                    "Property": "Bike Ministry Date"
+                  }
+                },
+                "Hierarchy": "Date Hierarchy"
+              }
+            },
+            "Level": "Month"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "3ce0e22b32123e14a88b",
+        "field": {
+          "HierarchyLevel": {
+            "Expression": {
+              "Hierarchy": {
+                "Expression": {
+                  "PropertyVariationSource": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "OfficeForms Table"
+                      }
+                    },
+                    "Name": "Variation",
+                    "Property": "Bike Ministry Date"
+                  }
+                },
+                "Hierarchy": "Date Hierarchy"
+              }
+            },
+            "Level": "Day"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}
