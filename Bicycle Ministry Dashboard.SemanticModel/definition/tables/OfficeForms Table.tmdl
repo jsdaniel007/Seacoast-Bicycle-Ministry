@@ -60,6 +60,65 @@ table 'OfficeForms Table'
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	measure 'Correlation between Bike Donations and Scrap' =
+			
+			VAR __CORRELATION_TABLE = VALUES('OfficeForms Table'[Id])
+			VAR __COUNT =
+				COUNTX(
+					KEEPFILTERS(__CORRELATION_TABLE),
+					CALCULATE(
+						SUM('OfficeForms Table'[Bike Donations Received])
+							* SUM('OfficeForms Table'[Bikes that were scrapped])
+					)
+				)
+			VAR __SUM_X =
+				SUMX(
+					KEEPFILTERS(__CORRELATION_TABLE),
+					CALCULATE(SUM('OfficeForms Table'[Bike Donations Received]))
+				)
+			VAR __SUM_Y =
+				SUMX(
+					KEEPFILTERS(__CORRELATION_TABLE),
+					CALCULATE(SUM('OfficeForms Table'[Bikes that were scrapped]))
+				)
+			VAR __SUM_XY =
+				SUMX(
+					KEEPFILTERS(__CORRELATION_TABLE),
+					CALCULATE(
+						SUM('OfficeForms Table'[Bike Donations Received])
+							* SUM('OfficeForms Table'[Bikes that were scrapped]) * 1.
+					)
+				)
+			VAR __SUM_X2 =
+				SUMX(
+					KEEPFILTERS(__CORRELATION_TABLE),
+					CALCULATE(SUM('OfficeForms Table'[Bike Donations Received]) ^ 2)
+				)
+			VAR __SUM_Y2 =
+				SUMX(
+					KEEPFILTERS(__CORRELATION_TABLE),
+					CALCULATE(SUM('OfficeForms Table'[Bikes that were scrapped]) ^ 2)
+				)
+			RETURN
+				DIVIDE(
+					__COUNT * __SUM_XY - __SUM_X * __SUM_Y * 1.,
+					SQRT(
+						(__COUNT * __SUM_X2 - __SUM_X ^ 2)
+							* (__COUNT * __SUM_Y2 - __SUM_Y ^ 2)
+					)
+				)
+		lineageTag: d9852047-2bfa-4aa7-af8f-c045cbe94e80
+
+		extendedProperty MeasureTemplate =
+				{
+				  "version": 0,
+				  "daxTemplateName": "CorrelationCoefficient"
+				}
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column Id
 		dataType: int64
 		formatString: 0

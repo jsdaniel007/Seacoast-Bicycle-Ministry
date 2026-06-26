@@ -4,10 +4,10 @@
   "position": {
     "x": 851.11111111111109,
     "y": 280,
-    "z": 2001,
+    "z": 3000,
     "height": 300,
     "width": 428.88888888888886,
-    "tabOrder": 2001
+    "tabOrder": 3000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -52,23 +52,5 @@
       }
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "f3735c325e376ab0002f",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "OfficeForms Table"
-              }
-            },
-            "Property": "Repair and Volunteer Correlation"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }
