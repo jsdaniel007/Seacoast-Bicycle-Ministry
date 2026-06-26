@@ -1,12 +1,12 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
-  "name": "92a77aa6e028c56989b8",
+  "name": "d42011f915c59079a155",
   "position": {
     "x": 0,
     "y": 0,
     "z": 0,
     "height": 720,
-    "width": 950.00000000000011,
+    "width": 950,
     "tabOrder": 0
   },
   "visual": {
@@ -84,11 +84,11 @@
                       "Property": "Bike Repairs"
                     }
                   },
-                  "Function": 0
+                  "Function": 1
                 }
               },
               "queryRef": "Sum(OfficeForms Table.Bike Repairs)",
-              "nativeQueryRef": "Sum of Bike Repairs"
+              "nativeQueryRef": "Average of Bike Repairs"
             },
             {
               "field": {
@@ -103,11 +103,11 @@
                       "Property": "Bike Donations Received"
                     }
                   },
-                  "Function": 0
+                  "Function": 1
                 }
               },
               "queryRef": "Sum(OfficeForms Table.Bike Donations Received)",
-              "nativeQueryRef": "Sum of Bike Donations Received"
+              "nativeQueryRef": "Average of Bike Donations Received"
             },
             {
               "field": {
@@ -122,11 +122,11 @@
                       "Property": "Bikes that were scrapped"
                     }
                   },
-                  "Function": 0
+                  "Function": 1
                 }
               },
               "queryRef": "Sum(OfficeForms Table.Bikes that were scrapped)",
-              "nativeQueryRef": "Sum of Bikes that were scrapped"
+              "nativeQueryRef": "Average of Bikes that were scrapped"
             },
             {
               "field": {
@@ -141,11 +141,11 @@
                       "Property": "Bikes Given Away"
                     }
                   },
-                  "Function": 0
+                  "Function": 1
                 }
               },
               "queryRef": "Sum(OfficeForms Table.Bikes Given Away)",
-              "nativeQueryRef": "Sum of Bikes Given Away"
+              "nativeQueryRef": "Average of Bikes Given Away"
             },
             {
               "field": {
@@ -160,11 +160,11 @@
                       "Property": "Number of Volunteers"
                     }
                   },
-                  "Function": 0
+                  "Function": 1
                 }
               },
               "queryRef": "Sum(OfficeForms Table.Number of Volunteers)",
-              "nativeQueryRef": "Sum of Number of Volunteers"
+              "nativeQueryRef": "Average of Number of Volunteers"
             }
           ]
         }

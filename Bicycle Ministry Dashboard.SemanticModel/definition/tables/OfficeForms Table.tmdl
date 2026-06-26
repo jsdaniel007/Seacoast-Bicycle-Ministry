@@ -1,6 +1,65 @@
 table 'OfficeForms Table'
 	lineageTag: 7e7a8b4b-67f6-46b6-b45a-c751f1a2ef6b
 
+	measure 'Repair and Volunteer Correlation' =
+			
+			VAR __CORRELATION_TABLE = VALUES('OfficeForms Table'[Id])
+			VAR __COUNT =
+				COUNTX(
+					KEEPFILTERS(__CORRELATION_TABLE),
+					CALCULATE(
+						SUM('OfficeForms Table'[Bike Repairs])
+							* SUM('OfficeForms Table'[Number of Volunteers])
+					)
+				)
+			VAR __SUM_X =
+				SUMX(
+					KEEPFILTERS(__CORRELATION_TABLE),
+					CALCULATE(SUM('OfficeForms Table'[Bike Repairs]))
+				)
+			VAR __SUM_Y =
+				SUMX(
+					KEEPFILTERS(__CORRELATION_TABLE),
+					CALCULATE(SUM('OfficeForms Table'[Number of Volunteers]))
+				)
+			VAR __SUM_XY =
+				SUMX(
+					KEEPFILTERS(__CORRELATION_TABLE),
+					CALCULATE(
+						SUM('OfficeForms Table'[Bike Repairs])
+							* SUM('OfficeForms Table'[Number of Volunteers]) * 1.
+					)
+				)
+			VAR __SUM_X2 =
+				SUMX(
+					KEEPFILTERS(__CORRELATION_TABLE),
+					CALCULATE(SUM('OfficeForms Table'[Bike Repairs]) ^ 2)
+				)
+			VAR __SUM_Y2 =
+				SUMX(
+					KEEPFILTERS(__CORRELATION_TABLE),
+					CALCULATE(SUM('OfficeForms Table'[Number of Volunteers]) ^ 2)
+				)
+			RETURN
+				DIVIDE(
+					__COUNT * __SUM_XY - __SUM_X * __SUM_Y * 1.,
+					SQRT(
+						(__COUNT * __SUM_X2 - __SUM_X ^ 2)
+							* (__COUNT * __SUM_Y2 - __SUM_Y ^ 2)
+					)
+				)
+		lineageTag: 6ea480f8-64f7-41e0-a752-5171ce97b3ec
+
+		extendedProperty MeasureTemplate =
+				{
+				  "version": 0,
+				  "daxTemplateName": "CorrelationCoefficient"
+				}
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column Id
 		dataType: int64
 		formatString: 0
@@ -96,7 +155,7 @@ table 'OfficeForms Table'
 		annotation SummarizationSetBy = Automatic
 
 	column 'Number of Volunteers'
-		dataType: int64
+		dataType: double
 		formatString: 0
 		lineageTag: f7cea6f8-9b17-4d8a-9f96-3a1bbb4361a6
 		summarizeBy: sum
@@ -128,9 +187,10 @@ table 'OfficeForms Table'
 				    OfficeForms.Table_Table = Source{[Item="OfficeForms.Table",Kind="Table"]}[Data],
 				    #"Changed Type" = Table.TransformColumnTypes(OfficeForms.Table_Table,{{"Id", Int64.Type}, {"Start time", type datetime}, {"Completion time", type datetime}, {"Email", type text}, {"Name", type any}, {"Bike Ministry Date", type date}, {"Bike Donations Received", Int64.Type}, {"Bikes Given Away", Int64.Type}, {"Names of Donation Recipients", type text}, {"Bike Repairs", Int64.Type}, {"Bikes that were scrapped", Int64.Type}, {"How Organized was today?", Int64.Type}, {"Number of Volunteers", type any}, {"List any names of people that attended that may not have signed in", type text}, {"What can we do to improve next time?", type text}}),
 				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Start time", "Email", "Name"}),
-				    #"Changed Type1" = Table.TransformColumnTypes(#"Removed Columns",{{"Completion time", type date}, {"Number of Volunteers", Int64.Type}})
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Removed Columns",{{"Completion time", type date}, {"Number of Volunteers", Int64.Type}}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Changed Type1",null,0,Replacer.ReplaceValue,{"Number of Volunteers"})
 				in
-				    #"Changed Type1"
+				    #"Replaced Value"
 
 	annotation PBI_NavigationStepName = Navigation
 

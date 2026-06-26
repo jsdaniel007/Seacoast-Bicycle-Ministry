@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
   "name": "8b71ee57d2c05c8c0d23",
   "position": {
-    "x": 670.18399977035915,
-    "y": 517.335017366593,
+    "x": 851.11111111111109,
+    "y": 517.77777777777771,
     "z": 2000,
-    "height": 202.23096133421365,
-    "width": 435.0317191491805,
+    "height": 202.22222222222223,
+    "width": 428.88888888888886,
     "tabOrder": 2000
   },
   "visual": {
@@ -81,5 +81,47 @@
       }
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "d57f4a2e39ef8e3db8d4",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "OfficeForms Table"
+                  }
+                },
+                "Property": "Number of Volunteers"
+              }
+            },
+            "Function": 1
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "c3c2c6de6eb165243291",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "OfficeForms Table"
+                  }
+                },
+                "Property": "Bike Repairs"
+              }
+            },
+            "Function": 1
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
-  "name": "bfd2a604128ee7d5d839",
+  "name": "0d88e9fb71c0b1b2b661",
   "position": {
     "x": 950,
-    "y": 0,
-    "z": 1000,
-    "height": 144,
+    "y": 431.53846153846155,
+    "z": 2000,
+    "height": 143.84615384615384,
     "width": 330,
-    "tabOrder": 1000
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "card",
@@ -25,14 +25,14 @@
                           "Entity": "OfficeForms Table"
                         }
                       },
-                      "Property": "Bike Donations Received"
+                      "Property": "Bike Repairs"
                     }
                   },
-                  "Function": 0
+                  "Function": 1
                 }
               },
-              "queryRef": "Sum(OfficeForms Table.Bike Donations Received)",
-              "nativeQueryRef": "Sum of Bike Donations Received"
+              "queryRef": "Sum(OfficeForms Table.Bike Repairs)",
+              "nativeQueryRef": "Average of Bike Repairs"
             }
           ]
         }
@@ -49,10 +49,10 @@
                         "Entity": "OfficeForms Table"
                       }
                     },
-                    "Property": "Bike Donations Received"
+                    "Property": "Bike Repairs"
                   }
                 },
-                "Function": 0
+                "Function": 1
               }
             },
             "direction": "Descending"
@@ -69,9 +69,8 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 6,
-                      "Percent": 0.6
+                    "Literal": {
+                      "Value": "'#A6EBB7'"
                     }
                   }
                 }

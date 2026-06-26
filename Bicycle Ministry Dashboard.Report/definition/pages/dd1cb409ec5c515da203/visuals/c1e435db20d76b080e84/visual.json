@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
-  "name": "bfd2a604128ee7d5d839",
+  "name": "c1e435db20d76b080e84",
   "position": {
     "x": 950,
-    "y": 0,
-    "z": 1000,
-    "height": 144,
+    "y": 287.69230769230768,
+    "z": 4000,
+    "height": 143.84615384615384,
     "width": 330,
-    "tabOrder": 1000
+    "tabOrder": 4000
   },
   "visual": {
     "visualType": "card",
@@ -25,14 +25,14 @@
                           "Entity": "OfficeForms Table"
                         }
                       },
-                      "Property": "Bike Donations Received"
+                      "Property": "Bikes that were scrapped"
                     }
                   },
-                  "Function": 0
+                  "Function": 1
                 }
               },
-              "queryRef": "Sum(OfficeForms Table.Bike Donations Received)",
-              "nativeQueryRef": "Sum of Bike Donations Received"
+              "queryRef": "Sum(OfficeForms Table.Bikes that were scrapped)",
+              "nativeQueryRef": "Average of Bikes that were scrapped"
             }
           ]
         }
@@ -49,10 +49,10 @@
                         "Entity": "OfficeForms Table"
                       }
                     },
-                    "Property": "Bike Donations Received"
+                    "Property": "Bikes that were scrapped"
                   }
                 },
-                "Function": 0
+                "Function": 1
               }
             },
             "direction": "Descending"
@@ -70,7 +70,7 @@
                 "color": {
                   "expr": {
                     "ThemeDataColor": {
-                      "ColorId": 6,
+                      "ColorId": 9,
                       "Percent": 0.6
                     }
                   }

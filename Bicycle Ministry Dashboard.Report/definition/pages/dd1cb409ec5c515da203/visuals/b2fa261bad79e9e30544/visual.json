@@ -1,6 +1,6 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
-  "name": "bfd2a604128ee7d5d839",
+  "name": "b2fa261bad79e9e30544",
   "position": {
     "x": 950,
     "y": 0,
@@ -28,11 +28,11 @@
                       "Property": "Bike Donations Received"
                     }
                   },
-                  "Function": 0
+                  "Function": 1
                 }
               },
               "queryRef": "Sum(OfficeForms Table.Bike Donations Received)",
-              "nativeQueryRef": "Sum of Bike Donations Received"
+              "nativeQueryRef": "Average of Bike Donations Received"
             }
           ]
         }
@@ -52,7 +52,7 @@
                     "Property": "Bike Donations Received"
                   }
                 },
-                "Function": 0
+                "Function": 1
               }
             },
             "direction": "Descending"
