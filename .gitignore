@@ -1,2 +1,7 @@
 **/.pbi/localSettings.json
 **/.pbi/cache.abf
+.venv
+data/
+**/settings.py
+token_cache.json
+scripts/__pycache__/
