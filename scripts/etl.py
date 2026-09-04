@@ -1,8 +1,9 @@
 # Purpose: Helper functions for Excel file to output and view  through pandas
 import pandas as pd
+import sqlite3 as sql
 from pathlib import Path
 
-def convert_excel_to_dataframe(file_path):
+def extractTransform(file_path):
     """
     Inspect the structure of an Excel workbook and return a dictionary containing sheet names and their corresponding DataFrames.
     Args:
@@ -17,11 +18,12 @@ def convert_excel_to_dataframe(file_path):
     all_sheets = excel_file.sheet_names
     df = excel_file.parse(sheet_name=all_sheets[0])  # Read the first sheet into a DataFrame
 
-    print(f"df info:{"\n"}Available Sheets: {len(all_sheets):},{"\n"}{df.info()}")
-    print(f"df head:{"\n"}{df.head()},{"\n"}")
+    #print(f"df info:{"\n"}Available Sheets: {len(all_sheets):},{"\n"}{df.info()}")
+    #print(f"df head:{"\n"}{df.head()},{"\n"}")
     return df
 
-def clean_bike_dataframe(df):
+
+def transformBikeData(df):
     # rename columns - Spent a lot of time on getting this right
     df = df.rename(columns={df.columns[1]: "Survey Day Time", 
                     df.columns[8]: "Donation Recipients",
@@ -57,20 +59,31 @@ def clean_bike_dataframe(df):
     # delete columns - alot of time on this part
     df = df.drop(df.columns[[2, 3, 4]], axis=1)
 
-    print(df.columns)
-
     return df
 
-testfilepath = Path("data/BikeMinistryData.xlsx")
+def loadBikeData(df):
+    with sql.connect("data/bikeministrydata.db") as conn:
+        with open("sql/rebuild_schema.sql", "r") as f: 
+            sql_script = f.read()
 
-# Clean terminal settings for viewing
-pd.set_option('display.max_columns', None)  # Show all columns
-pd.set_option('display.max_rows', None)     # Show all rows
+        # Create the table structure, no data yet
+        conn.executescript(sql_script)
 
-try:
-    # Convert to a dataframe
-    df = convert_excel_to_dataframe(testfilepath)
-    df = clean_bike_dataframe(df)
+    # Load data now
+    df.to_sql("bike_stats", con=conn, if_exists="append", index=False)
 
-except FileNotFoundError as e:
-    print(f"Error: {e}")
+if __name__ == "_main_":
+    testfilepath = Path("data/BikeMinistryData.xlsx")
+
+    # Clean terminal settings for viewing
+    pd.set_option('display.max_columns', None)  # Show all columns
+    pd.set_option('display.max_rows', None)     # Show all rows
+
+    try:
+        extracted_df = extractTransform(testfilepath)
+        transformed_df = transformBikeData(extracted_df)
+        load_df = loadBikeData(transformed_df)
+
+
+    except FileNotFoundError as e:
+        print(f"Error: {e}")
