@@ -14,7 +14,7 @@ CACHE_FILE = "token_cache.json"
 from msal import PublicClientApplication
 
 # authentication aka Phase 1, with cache function
-def get_access_token():
+def get_access_token() -> dict:
     cache = SerializableTokenCache()
 
     if os.path.exists(CACHE_FILE):
@@ -48,7 +48,7 @@ def get_access_token():
 
     return result["access_token"]
 
-def download_bike_ministry_file(token):
+def download_bike_ministry_file(token: str) -> None:
     headers = {"Authorization": f"Bearer {token}"}
     file_id = settings.config["file_id"]
     response = requests.get(
@@ -57,8 +57,8 @@ def download_bike_ministry_file(token):
     with open("data/BikeMinistryData.xlsx", "wb") as f:
         f.write(response.content)
 
-
-token = get_access_token()
-
-download_bike_ministry_file(token)
+if __name__=="__main__":
+    # How to use this
+    token = get_access_token()
+    download_bike_ministry_file(token)
 
