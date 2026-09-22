@@ -1,0 +1,107 @@
+
+Length of Columns: 15exiting extractExcel df...: 
+ Index(['Id', 'Start time', 'Completion time', 'Email', 'Name',
+       'Bike Ministry Date', 'Bike Donations Received', 'Bikes Given Away',
+       'Names of Donation Recipients', 'Bike Repairs',
+       'Bikes that were scrapped', 'How Organized was today?',
+       'Number of Volunteers',
+       'List any names of people that attended that may not have signed in',
+       'What can we do to improve next time?'],
+      dtype='str')                         count                        mean  \
+Id                        13.0                         7.0   
+Start time                  13         2026-05-07 05:18:33   
+Completion time             13  2026-05-07 05:22:36.307692   
+Name                       0.0                         NaN   
+Bike Ministry Date          13  2026-04-22 14:46:09.230769   
+Bike Donations Received   13.0                    3.076923   
+Bikes Given Away          13.0                    3.461538   
+Bike Repairs              13.0                    5.076923   
+Bikes that were scrapped  13.0                    1.923077   
+How Organized was today?  12.0                        2.75   
+Number of Volunteers       9.0                    6.888889   
+
+                                          min                  25%  \
+Id                                        1.0                  4.0   
+Start time                2026-03-16 13:36:49  2026-03-20 11:27:33   
+Completion time           2026-03-16 13:38:43  2026-03-20 11:29:12   
+Name                                      NaN                  NaN   
+Bike Ministry Date        2026-01-03 00:00:00  2026-03-07 00:00:00   
+Bike Donations Received                   0.0                  0.0   
+Bikes Given Away                          0.0                  2.0   
+Bike Repairs                              0.0                  3.0   
+Bikes that were scrapped                  0.0                  0.0   
+How Organized was today?                  1.0                  3.0   
+Number of Volunteers                      2.0                  5.0   
+
+                                          50%                  75%  \
+Id                                        7.0                 10.0   
+Start time                2026-04-18 11:19:02  2026-06-20 10:49:23   
+Completion time           2026-04-18 11:23:29  2026-06-20 10:51:27   
+Name                                      NaN                  NaN   
+Bike Ministry Date        2026-04-18 00:00:00  2026-06-20 00:00:00   
+Bike Donations Received                   1.0                  5.0   
+Bikes Given Away                          3.0                  5.0   
+Bike Repairs                              5.0                  7.0   
+Bikes that were scrapped                  1.0                  2.0   
+How Organized was today?                  3.0                  3.0   
+Number of Volunteers                      7.0                  7.0   
+
+                                          max       std  
+Id                                       13.0   3.89444  
+Start time                2026-08-15 22:29:29       NaN  
+Completion time           2026-08-15 22:32:18       NaN  
+Name                                      NaN       NaN  
+Bike Ministry Date        2026-08-15 00:00:00       NaN  
+Bike Donations Received                  12.0  4.251696  
+Bikes Given Away                          9.0  2.696151  
+Bike Repairs                             11.0  2.985005  
+Bikes that were scrapped                 12.0  3.252218  
+How Organized was today?                  3.0  0.621582  
+Number of Volunteers                     13.0  3.018462  
+Length of Columns: 11
+In transformBikeData...: 
+ Index(['start_time', 'bike_ministry_date', 'bike_donations_received',
+       'bikes_given_away', 'names_of_donation_recipients', 'bike_repairs',
+       'bikes_that_were_scrapped', 'how_organized_was_today',
+       'number_of_volunteers',
+       'list_any_names_of_people_that_attended_that_may_not_have_signed_in',
+       'what_can_we_do_to_improve_next_time'],
+      dtype='str')                         count                        mean  \
+start_time                  13         2026-05-07 05:18:33   
+bike_ministry_date          13  2026-04-22 14:46:09.230769   
+bike_donations_received   13.0                    3.076923   
+bikes_given_away          13.0                    3.461538   
+bike_repairs              13.0                    5.076923   
+bikes_that_were_scrapped  13.0                    1.923077   
+how_organized_was_today   12.0                        2.75   
+number_of_volunteers       9.0                    6.888889   
+
+                                          min                  25%  \
+start_time                2026-03-16 13:36:49  2026-03-20 11:27:33   
+bike_ministry_date        2026-01-03 00:00:00  2026-03-07 00:00:00   
+bike_donations_received                   0.0                  0.0   
+bikes_given_away                          0.0                  2.0   
+bike_repairs                              0.0                  3.0   
+bikes_that_were_scrapped                  0.0                  0.0   
+how_organized_was_today                   1.0                  3.0   
+number_of_volunteers                      2.0                  5.0   
+
+                                          50%                  75%  \
+start_time                2026-04-18 11:19:02  2026-06-20 10:49:23   
+bike_ministry_date        2026-04-18 00:00:00  2026-06-20 00:00:00   
+bike_donations_received                   1.0                  5.0   
+bikes_given_away                          3.0                  5.0   
+bike_repairs                              5.0                  7.0   
+bikes_that_were_scrapped                  1.0                  2.0   
+how_organized_was_today                   3.0                  3.0   
+number_of_volunteers                      7.0                  7.0   
+
+                                          max       std  
+start_time                2026-08-15 22:29:29       NaN  
+bike_ministry_date        2026-08-15 00:00:00       NaN  
+bike_donations_received                  12.0  4.251696  
+bikes_given_away                          9.0  2.696151  
+bike_repairs                             11.0  2.985005  
+bikes_that_were_scrapped                 12.0  3.252218  
+how_organized_was_today                   3.0  0.621582  
+number_of_volunteers                     13.0  3.018462  

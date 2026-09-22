@@ -8,6 +8,7 @@ CREATE TABLE bike_stats (
     survey_date TEXT NOT NULL, -- ISO 8601 Date String (YYYY-MM-DD)
     event_date TEXT NOT NULL, -- ISO 8601 Date String (YYYY-MM-DD)
     donations_received INTEGER DEFAULT 0,
+    donations_given INTEGER DEFAULT 0,
     repairs_count INTEGER DEFAULT 0,
     scrapped_num INTEGER DEFAULT 0,
     volunteer_num INTEGER DEFAULT 0,

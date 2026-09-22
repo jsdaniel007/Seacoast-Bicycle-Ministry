@@ -2,35 +2,51 @@
 import pandas as pd
 import sqlite3 as sql
 from pathlib import Path
+from settings import LOG_COLUMNS, LOG_FOLDER, BIKE_XLSX_IN
 
-BIKE_XLSX_IN = Path("data/BikeMinistryData.xlsx")
+pd.set_option('display.max_columns', None)
+pd.set_option('display.max_rows', None)
 
+# Helper Functions
+def dfLogInfo(df: pd.DataFrame, headerText: str, firstRun: bool=False) -> None:
+    # log for viewing later
+    if firstRun:
+        with open(LOG_COLUMNS, "w") as l:
+            logStr = [f"{headerText}: {"\n"} {df.columns}", f"{df.describe().T}"]
+            l.write(f"\nLength of Columns: {len(df.columns)}")
+            for i in range(len(logStr)):
+                l.write(logStr[i])
+    else:
+        with open(LOG_COLUMNS, "a") as l:
+                logStr = [f"{headerText}: {"\n"} {df.columns}", f"{df.describe().T}"]
+                l.write(f"\nLength of Columns: {len(df.columns)}")
+                for i in range(len(logStr)):
+                    l.write(logStr[i])
+
+# Functions
 # Opens an excel workbook and extracts the data into a dataframe
 def extractExcel(file_path: str=BIKE_XLSX_IN) -> pd.DataFrame:
     path = Path(file_path)
-    excel_file = pd.ExcelFile(file_path)
+    excel_file = pd.ExcelFile(path)
 
     if not path.exists():
-        raise FileNotFoundError(f"The file '{file_path}' does not exist.")
+        raise FileNotFoundError(f"The file '{path}' does not exist.")
 
     all_sheets = excel_file.sheet_names
     df = excel_file.parse(sheet_name=all_sheets[0])  # Read the first sheet into a DataFrame
 
-    #print(f"df info:{"\n"}Available Sheets: {len(all_sheets):},{"\n"}{df.info()}")
-    #print(f"df head:{"\n"}{df.head()},{"\n"}")
+    dfLogInfo(df, "exiting extractExcel df...", True)
+
     return df
 
 # Perform the data transformations onto the dataframe before it makes it to the database
 def transformBikeData(df: pd.DataFrame) -> pd.DataFrame:
-    # rename columns - Spent a lot of time on getting this right
+    # drop complete duplicate columns first
+    df = df.drop_duplicates()
+    df = df.drop(columns=[
+        "Id", "Completion time", "Email", "Name"
+        ])
 
-    df = df.rename(columns={df.columns[1]: "Survey Day Time", 
-                    df.columns[8]: "Donation Recipients",
-                    df.columns[11]:"Organization Score", 
-                    df.columns[12]: "Volunteer Num",
-                    df.columns[13]:"Volunteer Name List", 
-                    df.columns[14]: "Improvement Notes"}
-    )
     # Standardize Column Names
     df.columns = (df.columns
                   .str.strip()
@@ -39,13 +55,24 @@ def transformBikeData(df: pd.DataFrame) -> pd.DataFrame:
                   .str.replace(r"[^\w\s]", "", regex=True) # delete wacky bad column names
     ) 
 
+    # rename columns - Spent a lot of time on getting this right
+    df = df.rename(columns={
+                    df.columns["start_time"]: "survey_date",
+                    df.columns["bike_ministry_date"]: "event_date", 
+                    df.columns["bike_donations_received"]: "donations_received",
+                    df.columns["bikes_given_away"]: "donations_given",
+                    df.columns["bike_repairs"]: "repairs_count", 
+                    df.columns["bikes_that_were_scrapped"]: "scrapped_num",
+                    df.columns["number_of_volunteers"]: "volunteer_num", 
+                    df.columns["how_organized_was_today"]: "organization_score",
+                    df.columns["names_of_donation_recipients"]: "recipient_list",
+                    df.columns["list_any_names_of_people_that_attended_that_may_not_have_signed_in"]: "volunteer_name_list",
+                    df.columns["what_can_we_do_to_improve_next_time"]: "improvement_notes"
+                })
+
     # Validate and cast types
     df["organization_score"] = pd.to_numeric(df["organization_score"], errors="coerce")
     df["volunteer_num"] = pd.to_numeric(df["volunteer_num"], errors="coerce")
-
-    # drop exact duplicate rows
-    df = df.drop_duplicates()
-    df = df.dropna(subset=["id"])
 
     # fillna values
     df["donation_recipients"] = df ["donation_recipients"].fillna("N/A")
@@ -53,9 +80,6 @@ def transformBikeData(df: pd.DataFrame) -> pd.DataFrame:
     df["improvement_notes"] = df ["improvement_notes"].fillna("N/A")
     df["organization_score"] = df ["organization_score"].fillna(0)
     df["volunteer_num"] = df ["volunteer_num"].fillna(0)
-
-    # delete columns - alot of time on this part
-    df = df.drop(df.columns[[2, 3, 4]], axis=1)
 
     return df
 
