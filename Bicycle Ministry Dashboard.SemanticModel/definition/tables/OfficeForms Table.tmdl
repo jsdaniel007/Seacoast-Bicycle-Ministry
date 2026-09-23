@@ -242,7 +242,7 @@ table 'OfficeForms Table'
 		mode: import
 		source =
 				let
-				    Source = Excel.Workbook(File.Contents("C:\Users\Personal\Documents\Code\Seacoast Bicycle Ministry Repository\Seacoast-Bicycle-Ministry\data\Bike Ministry Number Report and Feedback Form.xlsx"), null, true),
+				    Source = Excel.Workbook(File.Contents("C:\Users\Personal\Documents\Code\Seacoast Bicycle Ministry Repository\Seacoast-Bicycle-Ministry\data\BikeMinistryData.xlsx"), null, true),
 				    OfficeForms.Table_Table = Source{[Item="OfficeForms.Table",Kind="Table"]}[Data],
 				    #"Changed Type" = Table.TransformColumnTypes(OfficeForms.Table_Table,{{"Id", Int64.Type}, {"Start time", type datetime}, {"Completion time", type datetime}, {"Email", type text}, {"Name", type any}, {"Bike Ministry Date", type date}, {"Bike Donations Received", Int64.Type}, {"Bikes Given Away", Int64.Type}, {"Names of Donation Recipients", type text}, {"Bike Repairs", Int64.Type}, {"Bikes that were scrapped", Int64.Type}, {"How Organized was today?", Int64.Type}, {"Number of Volunteers", type any}, {"List any names of people that attended that may not have signed in", type text}, {"What can we do to improve next time?", type text}}),
 				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Start time", "Email", "Name"}),

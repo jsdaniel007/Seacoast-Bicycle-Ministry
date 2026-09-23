@@ -1,0 +1,147 @@
+table bike_stats
+	lineageTag: bbdba028-f7fd-4a5b-b693-c8e18036a491
+
+	column stat_id
+		dataType: double
+		lineageTag: 93187d9f-1a6b-4d0c-8b43-772cf2d3eca6
+		summarizeBy: sum
+		sourceColumn: stat_id
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column survey_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e74ae6a7-2bfc-44d1-a16e-069d5768216a
+		summarizeBy: none
+		sourceColumn: survey_date
+
+		variation Variation
+			isDefault
+			relationship: a545ce53-8c39-425a-aaef-0488a7c5d990
+			defaultHierarchy: LocalDateTable_1f9e549d-b852-4d23-9afe-65e9609bc8bd.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column event_date
+		dataType: string
+		lineageTag: f42fb40a-04f0-4886-b7dc-9f4485dba377
+		summarizeBy: none
+		sourceColumn: event_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column donations_received
+		dataType: double
+		lineageTag: fad19a80-5dce-4526-af02-7fcc1b93cff9
+		summarizeBy: sum
+		sourceColumn: donations_received
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column donations_given
+		dataType: double
+		lineageTag: e2faecca-a9dd-4ec8-beef-564b30e865ad
+		summarizeBy: sum
+		sourceColumn: donations_given
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column repairs_count
+		dataType: double
+		lineageTag: d5fa484b-5752-431e-9223-83ad834d5315
+		summarizeBy: sum
+		sourceColumn: repairs_count
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column scrapped_num
+		dataType: double
+		lineageTag: c667560f-e5aa-4b68-9431-d920bc5bd31d
+		summarizeBy: sum
+		sourceColumn: scrapped_num
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column volunteer_num
+		dataType: double
+		lineageTag: a92667e0-fc3a-49ef-805c-1f30a63bcb48
+		summarizeBy: sum
+		sourceColumn: volunteer_num
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column organization_score
+		dataType: double
+		lineageTag: c6e7ab94-f866-4c84-af62-95a3034dd0bd
+		summarizeBy: sum
+		sourceColumn: organization_score
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column recipient_list
+		dataType: string
+		lineageTag: 0bd54bd0-466b-4f11-91e5-f390d3a72163
+		summarizeBy: none
+		sourceColumn: recipient_list
+
+		annotation SummarizationSetBy = Automatic
+
+	column volunteer_name_list
+		dataType: string
+		lineageTag: 9f0a85cb-8887-4d85-ae24-909d60f09bd6
+		summarizeBy: none
+		sourceColumn: volunteer_name_list
+
+		annotation SummarizationSetBy = Automatic
+
+	column improvement_notes
+		dataType: string
+		lineageTag: b86abcb0-c57a-4504-b057-d9ad728e256b
+		summarizeBy: none
+		sourceColumn: improvement_notes
+
+		annotation SummarizationSetBy = Automatic
+
+	column created_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 9cc663c3-fb40-48dd-8fca-91a3ee0c604a
+		summarizeBy: none
+		sourceColumn: created_at
+
+		variation Variation
+			isDefault
+			relationship: c8d9289f-2f1f-454e-8991-6c9fc9a0a11c
+			defaultHierarchy: LocalDateTable_04e3601e-66be-4a3c-92d6-d981ab62e8cf.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition bike_stats = m
+		mode: import
+		source =
+				let
+				    Source = Odbc.DataSource("dsn=BikeStats", [HierarchicalNavigation=true]),
+				    bike_stats_Table = Source{[Name="bike_stats",Kind="Table"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(bike_stats_Table,{{"survey_date", type datetime}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

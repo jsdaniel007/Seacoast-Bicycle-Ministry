@@ -8,3 +8,13 @@ relationship 2ef18c18-7787-4332-b6bb-60a3cf5101e5
 	fromColumn: 'OfficeForms Table'.'Bike Ministry Date'
 	toColumn: LocalDateTable_70e838cf-658c-4b6d-a8d2-770c3caeaca8.Date
 
+relationship a545ce53-8c39-425a-aaef-0488a7c5d990
+	joinOnDateBehavior: datePartOnly
+	fromColumn: bike_stats.survey_date
+	toColumn: LocalDateTable_1f9e549d-b852-4d23-9afe-65e9609bc8bd.Date
+
+relationship c8d9289f-2f1f-454e-8991-6c9fc9a0a11c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: bike_stats.created_at
+	toColumn: LocalDateTable_04e3601e-66be-4a3c-92d6-d981ab62e8cf.Date
+
