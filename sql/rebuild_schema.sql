@@ -5,8 +5,8 @@ DROP TABLE IF EXISTS bike_stats;
 -- Rebuild
 CREATE TABLE bike_stats (
     stat_id INTEGER PRIMARY KEY,
-    survey_date TEXT NOT NULL, -- ISO 8601 Date String (YYYY-MM-DD)
-    event_date TEXT NOT NULL, -- ISO 8601 Date String (YYYY-MM-DD)
+    survey_date TEXT NOT NULL, -- UTC - ISO 8601 Date String (YYYY-MM-DD)
+    event_date TEXT NOT NULL, -- UTC - ISO 8601 Date String (YYYY-MM-DD)
     donations_received INTEGER DEFAULT 0,
     donations_given INTEGER DEFAULT 0,
     repairs_count INTEGER DEFAULT 0,

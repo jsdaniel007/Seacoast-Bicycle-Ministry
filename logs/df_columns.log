@@ -58,8 +58,7 @@ Bike Repairs                             11.0  2.985005
 Bikes that were scrapped                 12.0  3.252218  
 How Organized was today?                  3.0  0.621582  
 Number of Volunteers                     13.0  3.018462  
-Length of Columns: 11
-In transformBikeData...: 
+Length of Columns: 11before rename on transformBikeData: 
  Index(['start_time', 'bike_ministry_date', 'bike_donations_received',
        'bikes_given_away', 'names_of_donation_recipients', 'bike_repairs',
        'bikes_that_were_scrapped', 'how_organized_was_today',

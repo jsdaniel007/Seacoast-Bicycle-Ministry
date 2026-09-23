@@ -3,5 +3,6 @@
 .venv
 data/
 **/settings.py
+**/logs
 token_cache.json
 scripts/__pycache__/
