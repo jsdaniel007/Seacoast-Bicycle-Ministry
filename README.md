@@ -13,43 +13,21 @@ Code and Programming for Seacoast Bicycle Ministry
 
 
 Dataflow 
+⬇️⬇️⬇️
 
-
-─────────────────────────────────┐
-│     Microsoft Organization      │  <-- Where the files live
-│           OneDrive              │
-└───────────────┬─────────────────┘
-                │
-                ▼
-┌─────────────────────────────────┐
-│     get_latest_data.py         │  <-- Fetching and Saving
-│      (Microsoft Graph API)      │
-└───────────────┬─────────────────┘
-                │
-                ▼
-┌─────────────────────────┐
-│   BikeMinistryData.xlsx │  <-- Raw Source Files
-└────────────┬────────────┘
-             │
-             ▼
-┌─────────────────────────┐
-│    Python ETL Pipeline  │  <-- Automated Processing
-│   • get_latest_data.py  │
-│   • etl.py              │
-└────────────┬────────────┘
-             │
-             ▼
-┌─────────────────────────┐
-│   sql/rebuild_schema.sql│  <-- Database DDL Execution
-└────────────┬────────────┘      (Runs DROP & CREATE via executescript)
-             │
-             ▼
-┌─────────────────────────┐
-│     SQLite Database     │  <-- Stored Target Data
-│    (bike_stats table)   │      (Appended via Pandas to_sql)
-└────────────┬────────────┘
-             │
-             ▼
-┌─────────────────────────┐
-│    Power BI Dashboard   │  <-- Final Reporting Source
-└─────────────────────────┘
+Microsoft Organization OneDrive <------ "Where the files live"
+⬇️
+get_latest_data.py <------ "Fetching and Saving"
+(Microsoft Graph API)
+⬇️
+BikeMinistryData.xlsx <------ "Raw Source Files"
+⬇️
+Python ETL Pipeline <------ "Automated Processing"
+- get_latest_data.py
+- etl.py
+⬇️
+sql/rebuild_schema.sql <------ Database DDL Execution
+⬇️
+SQLite Database <------ Stored Target Data 
+⬇️
+Power BI Dashboard <------ Final Reporting Source
