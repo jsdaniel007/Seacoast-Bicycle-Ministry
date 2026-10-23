@@ -16,18 +16,30 @@ Dataflow
 ⬇️⬇️⬇️
 
 Microsoft Organization OneDrive <------ "Where the files live"
+
 ⬇️
+
 get_latest_data.py <------ "Fetching and Saving"
 (Microsoft Graph API)
+
 ⬇️
+
 BikeMinistryData.xlsx <------ "Raw Source Files"
+
 ⬇️
+
 Python ETL Pipeline <------ "Automated Processing"
 - get_latest_data.py
 - etl.py
+
 ⬇️
+
 sql/rebuild_schema.sql <------ Database DDL Execution
+
 ⬇️
+
 SQLite Database <------ Stored Target Data 
+
 ⬇️
+
 Power BI Dashboard <------ Final Reporting Source
