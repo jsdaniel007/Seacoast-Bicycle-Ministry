@@ -34,7 +34,7 @@ Python ETL Pipeline <------ "Automated Processing"
 
 ⬇️
 
-sql/rebuild_schema.sql <------ Database DDL Execution
+sql/rebuild_schema.sql <------ Database Execution
 
 ⬇️
 
@@ -43,3 +43,10 @@ SQLite Database <------ Stored Target Data
 ⬇️
 
 Power BI Dashboard <------ Final Reporting Source
+
+
+### Phase 3: Power BI Dashboard Reporting
+![Overview Averages](screenshots/Overview%20Averages%202026-10-26.png)
+![Overview 2026](screenshots/Overview_2026-10-26.png)
+![Overview Volunteer](screenshots/Overview_Volunteer_2026-10-26.png)
+![Overview 0 Value Sniffer](screenshots/Overview_0Value%202026-10-26.png)
